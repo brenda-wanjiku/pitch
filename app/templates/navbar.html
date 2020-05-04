@@ -15,13 +15,14 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated%}
                 <li><a href="{{url_for('main.profile', user_id = current_user.id)}}">{{current_user.name}}</a></li>
-                  <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-                  {% else %}
-                  <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-                  {%endif%}
-                </ul>
-  
-          
+                <li><a href="{{url_for('main.add_pitch', name = current_user.name)}}">Add Pitch</a></li>
+                <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                {%endif%}
+            </ul>
+
+
         </div>
     </div>
 </div>

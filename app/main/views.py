@@ -26,6 +26,19 @@ def pitch_category(category):
 
     return render_template('pitches.html', title = title, pitches = pitches )
 
+@main.route('/pitches/<category>', methods = ['GET','POST'])
+def pitch_count(id):
+    pitch = Pitch.get_pitch(id)
+    posted_date = pitch.posted.strftime('%b %d, %Y')
+
+    if request.args.get("likes"):
+        pitch.likes = pitch.likes + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+
 
 @main.route('/user/<user_id>')
 @login_required
@@ -64,6 +77,29 @@ def update_pic(user_id):
         user.profile_pic = path
         db.session.commit()
     return redirect(url_for('main.profile', id = user_id))
+
+
+@main.route('/user/<name>/new', methods = ["GET","POST"])
+@login_required
+def add_pitch(name):
+    form = AddPitch()
+    user = User.query.filter_by(name = name).first()
+    if user is None:
+        abort(404)
+    title = "Add Pitch"
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
+        category = form.category.data 
+    
+        new_pitch = Pitch(title = title, content = content, category = category,name = name, likes=0 ,dislikes=0)
+        new_pitch.save_pitch()  
+
+        title = 'New pitch'
+        pitches = Pitch.query.all()
+      
+        return redirect(url_for("main.get_category",category = category))
+    return render_template("new_pitch.html",form = form, title = title)
 
 
 
