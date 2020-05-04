@@ -5,6 +5,7 @@ from flask import render_template, redirect, url_for,flash
 from .forms import LoginForm,RegistrationForm
 from flask_login import login_user, logout_user,login_required
 from .. import db
+from ..email import mail_message
 
 
 @auth.route('/register', methods = ['GET', 'POST'])
@@ -19,6 +20,10 @@ def register():
             bio = "No bio"
             new_user = User(name = name, email = email, password = pass_code ,profile_pic = profile_pic, bio = bio)
             new_user.save_user()
+
+            mail_message("Welcome to watchlist","email/welcome_user",user.email,name=name)
+
+            return redirect(url_for('auth.login'))
      
      return render_template('auth/register.html',title = title, registration_form = form)
 
@@ -45,3 +50,5 @@ def logout():
     logout_user()
     flash("Successful Log Out")
     return redirect(url_for("main.index"))
+
+

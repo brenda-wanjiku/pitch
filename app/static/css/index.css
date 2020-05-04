@@ -17,8 +17,11 @@ h2{
     margin-top: 20px;
     margin-bottom: 20px;
 }
-h3{
+.category{
     font-family: 'Bitter', serif;
     font-size: 50px;
-    margin-top: 10px;
+}
+h3{
+    font-family: 'Coustard', serif;
+    font-size: 25px;
 }

@@ -2,22 +2,33 @@
 
 <!---- Styles block-->
 {% block styles%}
-    {{super()}}
+{{super()}}
 {% endblock %}
 <!---- Content block-->
 {% block content%}
 <div class="container">
     {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
 
-        <h1 class="text-center"> {{title}}</h1>
-        <div class="img">
-            <a href="/pitches"><img src="https://miro.medium.com/max/1575/0*vr9CgUKm35izlY5U.gif" width = "" height="250"></a>
-        </div>
+    <h1 class="text-center"> {{title}}</h1>
+    <div class="img">
+        <a href="/pitches"><img src="https://miro.medium.com/max/1575/0*vr9CgUKm35izlY5U.gif" width="" height="250"></a>
+    </div>
+    {% if pitches %}
+    {% for item in pitches %}
+    <div class="col-md-6">
+        <h3 class="source-name">{{item.title}}</h3>
+        <p>{{item.content}}</p>
+        <p>{{item.category}}</p>
+    </div>
+    {% endfor %}
+    {%endif%}
+
+</div>
 
 
 

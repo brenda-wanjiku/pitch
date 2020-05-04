@@ -18,11 +18,13 @@ def index():
 
 
 @main.route('/pitches/<category>')
-def categories(category):
+def pitch_category(category):
     title = "Category"
+    pitches = Pitch.query.filter_by(category = category).all()
+
    
 
-    return render_template('pitches.html', title = title)
+    return render_template('pitches.html', title = title, pitches = pitches )
 
 
 @main.route('/user/<user_id>')
