@@ -13,10 +13,12 @@
                 <li><a href="/">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-               <!-- If current user-->
-                <li style="color:white;padding:15px;"></li>
-                <li><a href="">Sign out</a></li>
-            </ul>
+                <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                <li><a href="">Profile</a></li>
+                </ul>
+  
+          
         </div>
     </div>
 </div>

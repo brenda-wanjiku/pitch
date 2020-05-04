@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String)
     bio = db.Column(db.String)
     profile_pic  = db.Column(db.String)
+    pass_code = db.Column(db.String)
 
     pitches = db.relationship('Pitch', backref = 'name', lazy = "dynamic")
     comments = db.relationship('Comment', backref = 'name', lazy = "dynamic")
@@ -57,9 +58,11 @@ class Pitch(db.Model):
     category = db.Column(db.String)
     title = db.Column(db.String) 
     content = db.Column(db.String)
+    likes = db.Column(db.Integer)
+    dislikes = db.Column(db.Integer)
 
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    comments = db.relationship('Comment', backref = 'pitch_id', lazy = "dynamic")
+    
 
     def save_pitch(self):
         db.session.add(self)
@@ -69,6 +72,16 @@ class Pitch(db.Model):
     def get_pitches(cls, category):
         pitches_list = Pitch.query.filter_by(category = category)
         return pitches_list
+
+    @classmethod
+    def pitches_count(cls,username):
+        user = User.query.filter_by(name = username).first()
+        pitches = Pitch.query.filter_by(user_id=user_id).all()
+
+        pitch_count = 0
+        for pitch in pitches:
+            pitch_count += 1
+        return pitch_count
     
 
 
@@ -80,7 +93,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     mention = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+  
 
     def save_comment(self):
         db.session.add(self)
