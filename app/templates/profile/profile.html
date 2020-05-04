@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <h1>{{current_user.name | upper}}</h1>
+            <div class="col-sm-12 col-md-5 col-lg-5">
+                <div class="img-container">
+                    <img src="{{url_for('static', filename = user.profile_pic)}}" class="img-thumbnail profile-pic">
+                </div>
+            </div>
+
+            {% if user == current_user %}
+            <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+        {% endif %}
+
+{% endblock %}
