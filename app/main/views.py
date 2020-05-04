@@ -27,8 +27,8 @@ def pitch_category(category):
     return render_template('pitches.html', title = title, pitches = pitches )
 
 @main.route('/pitches/<category>', methods = ['GET','POST'])
-def pitch_count(id):
-    pitch = Pitch.get_pitch(id)
+def pitch_count(category):
+    pitches = Pitch.pitch_category(category)
     posted_date = pitch.posted.strftime('%b %d, %Y')
 
     if request.args.get("likes"):
@@ -37,7 +37,18 @@ def pitch_count(id):
         db.session.add(pitch)
         db.session.commit()
 
-        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+        
+        return redirect("/pitch/{category}".format(category=category))
+    elif request.args.get("dislike"):
+        pitch.dislikes = pitch.dislikes + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect("/pitch/{category}".format(category=category))
+
+    return render_template("pitches.html", pitches = pitches)
+
 
 
 @main.route('/user/<user_id>')

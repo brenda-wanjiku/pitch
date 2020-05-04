@@ -24,6 +24,12 @@
         <h3 class="source-name">{{item.title}}</h3>
         <p>{{item.content}}</p>
         <p>{{item.category}}</p>
+        <a href="/pitches/{{item.category}}?like=1">
+            <i class="far fa-thumbs-up"></i>
+        </a> Likes {{item.likes}} <a href="/pitches/{{item.category}}?dislike=1">
+            <i class="far fa-thumbs-down"></i>
+        </a>Dislikes {{item.dislikes}}</span>
+
     </div>
     {% endfor %}
 
