@@ -62,6 +62,7 @@ class Pitch(db.Model):
     likes = db.Column(db.Integer)
     dislikes = db.Column(db.Integer)
 
+    comments = db.relationship("Comment", backref = "pitch", lazy = "dynamic")
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
 
@@ -73,6 +74,9 @@ class Pitch(db.Model):
     def get_pitches(cls, category):
         pitches_list = Pitch.query.filter_by(category = category)
         return pitches_list
+
+
+    
 
     @classmethod
     def pitches_count(cls,username):
@@ -94,6 +98,8 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     mention = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+
   
 
     def save_comment(self):

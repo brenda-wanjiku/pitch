@@ -33,9 +33,11 @@ body{
 .user{
     font-family: 'Chivo', sans-serif;
     font-size: 30px;
-    color: darkblue;  
 }
 .count{
     font-family: 'Chivo', sans-serif;
     font-size: 20px; 
+}
+form{
+    
 }

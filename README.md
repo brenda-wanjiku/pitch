@@ -48,16 +48,18 @@ $ python3.8 manage.py test
 * Flask
 
 # Behaviour driven development/ Specifications
-# Behaviour	#Input	#Output
-# Post pitch	#Pitch is saved in a database	Post from database
-Comment on pitch	Leave a comment	Comment saved for display
-Upvote or downvote pitch	Click on like or dislike	Reflects on likes and dislikes
-Login and authenticate	Email address and password	Saved and used for authentication
-Live Site
-Can be accessed here
+|Behaviour|	Input|	Output|
+| : - - - - - - - - - - -  - - : |  | : - - - - - - - - - - -  - - : | : - - - - - - - - - - -  - - : |
+|Post pitch	|Pitch is saved in a database	|Post from database|
+|Comment on pitch|	Leave a comment|	Comment saved for display|
+|Upvote or downvote pitch|	Click on like or dislike|	Reflects on likes and dislikes|
+|Login and authenticate|	Email address and password|	Saved and used for authentication|
 
-Author's Contact
+#Live Site
+*Can be accessed here 
+
+# Author's Contact
 If you need any clarifications or have feedback on this project , contact the author at brendawanjiku@gmail.com
 
-License
+# License
 This software is Licensed under MIT license Copyright (2018) brenda-wanjiku

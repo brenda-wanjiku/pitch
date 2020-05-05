@@ -82,10 +82,10 @@ def update_profile(user_id):
 def update_pic(user_id):
     title = "Edit Profile"
     user = User.query.filter_by(id = user_id).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic = path
+    if "profile-pic" in request.files:
+        pic = photos.save(request.files["profile-pic"])
+        file_path = f"photos/{pic}"
+        user.profile_pic = file_path
         db.session.commit()
     return redirect(url_for('main.profile', id = user_id))
 
@@ -128,14 +128,11 @@ def comment(user,pitch_id):
         return redirect(url_for("main.view_comments", pitch_id=pitch.id))
     return render_template("comment.html", title = pitch.title,form = form,pitch = pitch)
 
-@main.route("/user/<user_id>/<category>/comments")
-@login_required
-def view_comments(pitch_id):
-    pitch = Pitch.query.filter_by(id = pitch_id).first()
-    title = "Comments"
-    comments = pitch.get_pitch_comments()
-
-    return render_template("display_comment.html", comments = comments,pitch = pitch,title = title)
+@main.route("/<user_id>/profile")
+def user(user_id):
+    user = User.query.filter_by(id = user_id).first()
+    pitches = Pitch.query.filter_by(user_id = user.id).all()
+    return render_template("user.html", pitches = pitches, user = user)
 
 
 
