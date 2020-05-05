@@ -30,3 +30,8 @@ body{
     transition: transform 1s;
     margin: 20px;
 }
+.user{
+    font-family: 'Chivo', sans-serif;
+    font-size: 30px;
+    color: darkblue;  
+}

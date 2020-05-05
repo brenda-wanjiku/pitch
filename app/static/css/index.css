@@ -46,6 +46,9 @@ h3{
     transition: transform 1s;
     margin: 20px;
 }
+.quote:hover {
+    transform: scale(1.05)
+}
 .card{
     margin-top: 40px;
     padding: 10px;
