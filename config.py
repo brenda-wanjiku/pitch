@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brendawanjiku:brenda@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brendawanjiku:brenda@localhost/test_pitch'
     SECRET_KEY='brenda-wanjiku'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     #email configurations
@@ -17,7 +17,8 @@ class Config:
 class ProdConfig(Config):
       SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
-      
+
+
 class DevConfig(Config):
     DEBUG = True
 
