@@ -47,13 +47,14 @@ $ python3.8 manage.py test
 * Python 3.8
 * Flask
 
-# Behaviour driven development/ Specifications
-|Behaviour|	Input|	Output|
-| : - - - - - - - - - - -  - - : |  | : - - - - - - - - - - -  - - : | : - - - - - - - - - - -  - - : |
-|Post pitch	|Pitch is saved in a database	|Post from database|
-|Comment on pitch|	Leave a comment|	Comment saved for display|
-|Upvote or downvote pitch|	Click on like or dislike|	Reflects on likes and dislikes|
-|Login and authenticate|	Email address and password|	Saved and used for authentication|
+| Behavior- Our program should handle: | Input Example- When it receives: | Output Example- It should return: |
+| :-------------: | :-------------: | :-------------: |
+| User Sort Preference | Category | Sorted Pitches by Categories |
+| Send user to email to confirm sign up | Click 'sign up'    | Send email  |
+| Show pitches from other users | select a specific category | List pitches |
+| Enable user to give reviews and feedback for a pitch | Click 'new review' | written user review |
+| Enable vote for a pitch | Click 'like' or 'dislike' | user vote |
+| Enable user write a pitch | Click 'new pitch' | written user pitch |
 
 #Live Site
 *Can be accessed here 
