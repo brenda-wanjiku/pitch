@@ -11,3 +11,7 @@ class AddPitch(FlaskForm):
     content = TextAreaField('Pitch:', validators=[Required()])
     category = SelectField('Category', choices = [('Technology','Technology pitch'),('Philosophy','Philosophy pitch'),('Sports','Sports pitch'),('Alchemy', 'Alchemy pitch')], validators=[Required()])
     submit = SubmitField('Submit')
+
+class AddComment(FlaskForm):
+    text = TextAreaField('Leave a comment',validators=[Required()])
+    submit = SubmitField('Submit')

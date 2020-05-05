@@ -7,7 +7,7 @@
 {% block content%}
 <div class="container">
     <h3>{{pitch.title }} {{pitch.user.name}}</h3>
-    <a class="pitch-comment" href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"><button class="btn btn-info mr-0">Add
+    <a class="pitch-comment" href="{{url_for('main.comment',name = current_user.name, category = pitch.category)}}"><button class="btn btn-info mr-0">Add
             a comment</button></a>
 </div>
 

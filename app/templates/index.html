@@ -8,13 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Monoton|Roboto+Slab|Zilla+Slab&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bitter|Cabin|Cabin+Sketch|Fredericka+the+Great|Nunito|Patrick+Hand|Poppins|Roboto+Mono|Rubik|Special+Elite&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Coustard|Palanquin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chivo|Poppins|Prata|Special+Elite&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content%}
 <div class="container">
-    <h1 class="text-center">p<span style="font-family: 'Libre Baskerville', serif; font-size: 180px">i</span>tchd</h1>
-    <h3>“Eighty percent of your success will depend on your opening line "</h3>
-    <h3> - Unknown</h3>
+    <h1 class="text-center">p<span style="font-family: 'Poppins', sans-serif; font-size: 225px">i</span>tchd</h1>
+    <div class="quote">
+    <h3>“Your first line leaves a lasting impression.
+    <h3> Make it a good one."</h3>
+    <h3 class="text-center"> - Yoda</h3>
+    </div>
     <a href="/"><img src="" width="1000px"></a>
 
 <div class="card">
@@ -22,16 +26,16 @@
     <div class="card-body text-center ">
         <div class="row">
             <div class=" category col-md-6">
-                <a href="{{ url_for('main.pitch_category',category='Philosophy') }}">Philosophy</a>
+                <a href="{{ url_for('main.pitch_category',category='Philosophy') }}">--Philosophy--</a>
             </div>
             <div class=" category  col-md-6">
-                <a href="{{ url_for('main.pitch_category',category='Sports') }}">Sports</a>
+                <a href="{{ url_for('main.pitch_category',category='Sports') }}">--Sports--</a>
             </div>
             <div class="  category col-md-6">
-                <a href="{{ url_for('main.pitch_category',category='Technology') }}">Technology</a>
+                <a href="{{ url_for('main.pitch_category',category='Technology') }}">--Technology--</a>
             </div>
             <div class=" category col-md-6">
-                <a href="{{ url_for('main.pitch_category',category='Alchemy') }}">Alchemy</a>
+                <a href="{{ url_for('main.pitch_category',category='Alchemy') }}">--Alchemy--</a>
             </div>
 </div>
 </div>

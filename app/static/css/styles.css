@@ -5,7 +5,7 @@ body{
 }
 .category{
     font-family: 'Fredericka the Great', cursive;
-    font-size: 100px;
+    font-size: 60px;
 }
 .title{
     font-family: 'Chivo', sans-serif;
@@ -34,4 +34,8 @@ body{
     font-family: 'Chivo', sans-serif;
     font-size: 30px;
     color: darkblue;  
+}
+.count{
+    font-family: 'Chivo', sans-serif;
+    font-size: 20px; 
 }

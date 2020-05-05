@@ -1,5 +1,5 @@
 from ..models import User,Pitch,Comment
-from .forms import UpdateProfile
+from .forms import UpdateProfile,AddPitch,AddComment
 from flask import render_template,redirect,url_for,abort
 from . import main
 from .. import db,photos
@@ -27,8 +27,8 @@ def pitch_category(category):
     return render_template('pitches.html', title = title, pitches = pitches )
 
 @main.route('/pitches/<category>', methods = ['GET','POST'])
-def pitch_count(category):
-    pitches = Pitch.pitch_category(category)
+def pitch_count(name):
+    pitches = Pitch.pitches_count(name)
     posted_date = pitch.posted.strftime('%b %d, %Y')
 
     if request.args.get("likes"):
@@ -90,11 +90,11 @@ def update_pic(user_id):
     return redirect(url_for('main.profile', id = user_id))
 
 
-@main.route('/user/<name>/new', methods = ["GET","POST"])
+@main.route('/user/<user_id>/new', methods = ["GET","POST"])
 @login_required
-def add_pitch(name):
+def add_pitch(user_id):
     form = AddPitch()
-    user = User.query.filter_by(name = name).first()
+    user = User.query.filter_by(id = user_id).first()
     if user is None:
         abort(404)
     title = "Add Pitch"
@@ -103,14 +103,39 @@ def add_pitch(name):
         content = form.content.data
         category = form.category.data 
     
-        new_pitch = Pitch(title = title, content = content, category = category,name = name, likes=0 ,dislikes=0)
+        new_pitch = Pitch(title = title, content = content, category = category,user_id = user_id, likes=0 ,dislikes=0)
         new_pitch.save_pitch()  
 
         title = 'New pitch'
         pitches = Pitch.query.all()
       
-        return redirect(url_for("main.get_category",category = category))
+        return redirect(url_for("main.pitch_category",category = category))
     return render_template("new_pitch.html",form = form, title = title)
+
+
+
+@main.route("/user/<user_id>/<category>/comment", methods = ["GET","POST"])
+@login_required
+def comment(user,pitch_id):
+    user = User.query.filter_by(id = user).first()
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    form = AddComment()
+    title = "Add comment"
+    if form.validate_on_submit():
+        content = form.text.data 
+        new_comment = Comment(content = content, user = user, pitch = pitch )
+        new_comment.save_comment()
+        return redirect(url_for("main.view_comments", pitch_id=pitch.id))
+    return render_template("comment.html", title = pitch.title,form = form,pitch = pitch)
+
+@main.route("/user/<user_id>/<category>/comments")
+@login_required
+def view_comments(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    title = "Comments"
+    comments = pitch.get_pitch_comments()
+
+    return render_template("display_comment.html", comments = comments,pitch = pitch,title = title)
 
 
 

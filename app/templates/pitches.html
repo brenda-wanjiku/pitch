@@ -3,10 +3,15 @@
 <!---- Styles block-->
 {% block styles%}
 {{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Monoton|Roboto+Slab|Zilla+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bitter|Cabin|Cabin+Sketch|Fredericka+the+Great|Nunito|Patrick+Hand|Poppins|Roboto+Mono|Rubik|Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Coustard|Palanquin&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Chivo|Poppins|Prata|Special+Elite&display=swap" rel="stylesheet">
 {% endblock %}
 <!---- Content block-->
 {% block content%}
-<div class="container">
+<div class="pitch container">
     {% for message in get_flashed_messages() %}
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -14,36 +19,38 @@
     </div>
     {% endfor %}
 
-    <h1 class="text-center"> {{title}}</h1>
-    <div class="img">
-        <a href="/pitches"><img src="https://miro.medium.com/max/1575/0*vr9CgUKm35izlY5U.gif" width="" height="250"></a>
-    </div>
+
     {% if pitches %}
     {% for item in pitches %}
-    <div class="col-md-6">
-        <h3 class="source-name">{{item.title}}</h3>
-        <p>{{item.content}}</p>
-        <p>{{item.category}}</p>
+    
+    <div class=" item col-md-12">
+        <h1 class="category text-center">{{item.category}}</h1>
+        <h3 class="title"> <strong>Title:   {{item.title}}</strong></h3>
+        <hr>
+        <p class="content"> {{item.content}}</p>
+        <p class="user"><span style="font-size: 25px;">Posted by:</span> <strong>{{item.name.name}}</strong></p>
+     
         <a href="/pitches/{{item.category}}?like=1">
             <i class="far fa-thumbs-up"></i>
-        </a> Likes {{item.likes}} <a href="/pitches/{{item.category}}?dislike=1">
+        </a class="count"> Likes: {{item.likes}} <a href="/pitches/{{item.category}}?dislike=1">
             <i class="far fa-thumbs-down"></i>
-        </a>Dislikes {{item.dislikes}}</span>
+        </a class="count">Dislikes {{item.dislikes}}</span>
         <div>
             {% if current_user.is_authenticated %}
-            <a class="pitch-comment" href="{{url_for('main.view_comments',pitch_id = pitch.id)}}">View Comments</a>
+            <a class="pitch-comment" href="{{url_for('main.view_comments', user_id = item.id, category = item.category)}}">View Comments</a>
             {% endif %}
         </div>
 
     </div>
     {% endfor %}
 
-{% else %}
-<h2>There are no pitches in this category</h2>
-{% if current_user.is_authenticated %}
-<a href="{{url_for('main.add_pitch',uname = current_user.name)}}"><button class="btn btn-info">Add A Pitch</button></a>
-{% endif %}
-{% endif %}
+    {% else %}
+    <h2>There are no pitches in this category</h2>
+    {% if current_user.is_authenticated %}
+    <a href="{{url_for('main.add_pitch',uname = current_user.name)}}"><button class="btn btn-info">Add A
+            Pitch</button></a>
+    {% endif %}
+    {% endif %}
 </div>
 
 
