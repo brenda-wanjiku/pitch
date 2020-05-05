@@ -1,4 +1,4 @@
-Hello {{user.name}}
+Hello {{name}}
 Welcome to pItchd
 Thank you for signing up :)
 Hope you enjoy your expereince with us.

@@ -16,12 +16,10 @@ def register():
             name = form.username.data
             email = form.email.data
             pass_code = form.password.data
-            profile_pic = "default.png"
-            bio = "No bio"
-            new_user = User(name = name, email = email, password = pass_code ,profile_pic = profile_pic, bio = bio)
+            new_user = User(name = name, email = email, password = pass_code)
             new_user.save_user()
 
-            mail_message("Welcome to watchlist","email/welcome_user",user.email,name=name)
+            mail_message("Welcome to watchlist","email/welcome_user",User.email,name=name)
 
             return redirect(url_for('auth.login'))
      

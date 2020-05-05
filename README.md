@@ -47,7 +47,8 @@ $ python3.8 manage.py test
 * Python 3.8
 * Flask
 
-| Behavior- Our program should handle: | Input Example- When it receives: | Output Example- It should return: |
+## BDD
+| Behavior | Input Example | Output |
 | :-------------: | :-------------: | :-------------: |
 | User Sort Preference | Category | Sorted Pitches by Categories |
 | Send user to email to confirm sign up | Click 'sign up'    | Send email  |

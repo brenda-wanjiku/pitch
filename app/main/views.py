@@ -21,15 +21,12 @@ def index():
 def pitch_category(category):
     title = "Category"
     pitches = Pitch.query.filter_by(category = category).all()
-
-   
-
     return render_template('pitches.html', title = title, pitches = pitches )
 
 @main.route('/pitches/<category>', methods = ['GET','POST'])
 def pitch_count(name):
     pitches = Pitch.pitches_count(name)
-    posted_date = pitch.posted.strftime('%b %d, %Y')
+    posted_date = pitch.posted.strftime('%b ,%d, %Y')
 
     if request.args.get("likes"):
         pitch.likes = pitch.likes + 1
@@ -82,8 +79,8 @@ def update_profile(user_id):
 def update_pic(user_id):
     title = "Edit Profile"
     user = User.query.filter_by(id = user_id).first()
-    if "profile-pic" in request.files:
-        pic = photos.save(request.files["profile-pic"])
+    if "profile_pic" in request.files:
+        pic = photos.save(request.files["profile_pic"])
         file_path = f"photos/{pic}"
         user.profile_pic = file_path
         db.session.commit()
