@@ -75,11 +75,14 @@ def update_profile(user_id):
         return redirect(url_for('main.profile',user_id = user.id)) 
     return render_template("profile/update.html",form = form,title = title)
 
+
+
 @main.route('/user/<user_id>/update/pic', methods = ['POST'])
 @login_required
 def update_pic(user_id):
     title = "Edit Profile"
     user = User.query.filter_by(id = user_id).first()
+    
     if "profile_pic" in request.files:
         pic = photos.save(request.files["profile_pic"])
         file_path = f"photos/{pic}"

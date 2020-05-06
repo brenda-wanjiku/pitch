@@ -5,14 +5,13 @@
 <div class="row">
     <h1>{{current_user.name }}</h1>
     <div class="col-sm-12 col-md-5 col-lg-5">
-        <p>BIO: {{current_user.bio}}</p>
+        <p>Bio: {{current_user.bio}}</p>
 
         <h3 class="text-center">Pitches</h3>
         {% if pitches %}
         <div class="row pitch-row">
             {% for pitch in pitches%}
             <div class="col-md-5 pitch-card">
-                <img src="{{url_for('static',filename='pitch.user.profile_pic')}}" alt="">
                 <h3 class="source-name">{{pitch.title}}</h3>
                 <p>"{{pitch.content}}"</p>
                 <p>CATEGORY: <strong>{{pitch.category}}</strong></p>
@@ -24,12 +23,10 @@
     </div>
             <div class="col-sm-12 col-md-5 col-lg-5">
                 <div class="img-container">
-                    <img src="{{url_for('static', filename = user.profile_pic)}}" class="img-thumbnail profile-pic">
                 </div>
             </div>
         <div>
             {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',user_id =user.id)}}">Edit profile</a>
         {% endif %}
     </div>
     

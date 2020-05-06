@@ -76,22 +76,24 @@ class Pitch(db.Model):
         return pitches_list
 
 
-    
+    @classmethod
+    def get_upvotes(cls,pitch_id):
+    '''
+    gets the upvotes of a particular pitch
+    '''
+    upvotes_number = Pitches.query.filter_by(id = pitch_id).first()
+    return upvotes_number.up_votes
 
     @classmethod
-    def pitches_count(cls,username):
-        user = User.query.filter_by(name = username).first()
-        pitches = Pitch.query.filter_by(user_id=user_id).all()
-
-        pitch_count = 0
-        for pitch in pitches:
-            pitch_count += 1
-        return pitch_count
-    
-
+    def get_downvotes(cls,pitch_id):
+    '''
+    gets the downvotes of a particular pitch
+    '''
+    downvotes_number = Pitches.query.filter_by(id = pitch_id).first()
+    return downvotes_number.down_votes
 
     def __repr__(self):
-        return f'User {self.name}'
+    return f'Pitch {self.title}'
 
 class Comment(db.Model):
     __tablename__ = "comments"
