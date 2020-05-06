@@ -58,7 +58,7 @@ $ python3.8 manage.py test
 | Enable user write a pitch | Click 'new pitch' | written user pitch |
 
 #Live Site
-*Can be accessed here 
+*Can be accessed here https://pitch-brenda.herokuapp.com/
 
 # Author's Contact
 If you need any clarifications or have feedback on this project , contact the author at brendawanjiku@gmail.com
