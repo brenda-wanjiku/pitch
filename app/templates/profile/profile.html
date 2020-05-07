@@ -1,13 +1,25 @@
 {% extends 'base.html'%}
 
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{% endblock%}
+
 {% block content %}
 <div class="container">
-<div class="row">
+<div class=" profile row">
     <h1>{{current_user.name }}</h1>
-    <div class="col-sm-12 col-md-5 col-lg-5">
-        <p>Bio: {{current_user.bio}}</p>
-
-        <h3 class="text-center">Pitches</h3>
+    {%if current_user.profile_pic%}
+    <div class="col-md-4 col-md-5 col-lg-5">
+    <img src="{{url_for('static',filename = current_user.profile_pic)}}" alt="{{current_user.name}}" class="img-thumbnail">
+    {%endif%}
+    <div class="col-md-4 col-md-5 col-lg-5">
+    <p>Bio: {{current_user.bio}}</p>
+    </div>
+    <div class="col-md-4 col-md-5 col-lg-5">
+    <a href="{{url_for('main.update_profile',user_id = current_user.id)}}"><button class='btn btn-danger btn-lg'>Update profile </button></a>        
+    </div>
+        <h3 class="pitch">Pitches</h3>
         {% if pitches %}
         <div class="row pitch-row">
             {% for pitch in pitches%}

@@ -28,16 +28,13 @@
         <h3 class="title"> <strong>Title:   {{item.title}}</strong></h3>
         <hr>
         <p class="content"> {{item.content}}</p>
-        <p class="user"><span style="font-size: 25px;">Posted by:</span> <strong>{{item.name.name}}</strong></p>
-
-        <a href="{{url_for('main.pitch_count',name= item.name, category = item.category)}}"><button type="button" name="button" class="btn btn-success">Like</button></a>
-        <p><strong>{{item.likes}}</strong></p>
-        <a href="{{url_for('main.pitch_count', name= item.name, category =item.category)}}"><button type="button" name="button" class="btn btn-secondary">Dislike</button></a>
-        <p><strong>{{item.likes}}</strong></p>
+        <p class="user"><span style="font-size: 25px;">Posted by:</span> <a href="{{url_for('main.user', user_id = current_user.id)}}"><button>{{item.name.name}}</button></a></strong></p>
+        <a href="{{url_for('main.like',pitch_id = item.id)}}"><button type="button" name="button" class="btn btn-success">Like</button></a>
+        <a href="{{url_for('main.dislike',pitch_id = item.id)}}"><button type="button" name="button" class="btn btn-danger">Dislikes
         <div>
             {% if current_user.is_authenticated %}
-            <a class="pitch-comment" href="">View Comments</a>
-            {% endif %}
+                <a href="{{url_for('main.comment',pitch_id = item.id)}}"> <button type="button" name="button" class="btn btn-outline-primary btn-lg">Comments</button></a>
+                {% endif %}
         </div>
 
     </div>
@@ -46,7 +43,7 @@
     {% else %}
     <h2>There are no pitches in this category</h2>
     {% if current_user.is_authenticated %}
-    <a href="{{url_for('main.add_pitch',uname = current_user.name)}}"><button class="btn btn-info">Add A
+    <a href="{{url_for('main.add_pitch', user_id = current_user.id)}}"><button class="btn btn-info">Add A
             Pitch</button></a>
     {% endif %}
     {% endif %}

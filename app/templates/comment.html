@@ -8,8 +8,31 @@
 
 {% block content%}
 <div class="container">
-    <h3>Comment on {{pitch.title}} by {{pitch.name.name}}</h3>
-    {{wtf.quick_form(form)}}
-    {{simplemde.load}}
+<div class="comment">
+{% if comments %}
+    {% for comment in comments %}
+      <div class="row">
+        <div class="col-md-6 text-center ul">
+          <h4>{{comment.pitch.title}}:</h4>
+        </div>
+        <div class="col-md-6 text-center">
+          <h5>{{comment.pitch.content}}</h5>
+        </div>
+        <div class="col-md-6 text-left">
+          <h5>By: {{comment.name.name}}</h5>
+        </div>
+        <br><br>
+      </div>
+    {% endfor %}
+    <div class="row">
+      <div class="text-center">
+        <a class="btn btn-danger" href="{{url_for('main.add_comment',username = current_user.name, pitch_id = pitch.id)}}"> Make a new comment</a>
+      </div>
+    </div>
+  {% else%}
+    <h3 class="text-center">This pitch has no comments </h3>
+    <a class="btn btn-danger" href="{{url_for('main.add_comment',username=current_user.name, pitch_id = pitch.id)}}"> Make a new comment</a>
+  {% endif %}
 </div>
 {% endblock %}
+</div>

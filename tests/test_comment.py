@@ -12,7 +12,18 @@ class CommentModelTest(unittest.TestCase):
         Pitch.query.delete()
         User.query.delete()
 
+
+
     def test_check_instance_variables(self):
         self.assertEquals(self.new_comment.comment,'Test comment')
         self.assertEquals(self.new_comment.user,self.user_brenda)
         self.assertEquals(self.new_comment.pitch,self.
+
+    def test_get_comments(self):
+        self.new_comment.save_comment()
+        get_comments = Comment.get_comments(2)
+        self.assertEqual(len(get_comments) == 2)
+
+    def test_save_comments(self):
+            self.new_review.save_review()
+            self.assertTrue(len(Review.query.all())>0)

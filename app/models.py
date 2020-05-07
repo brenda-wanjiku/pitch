@@ -76,24 +76,24 @@ class Pitch(db.Model):
         return pitches_list
 
 
-    @classmethod
-    def get_upvotes(cls,pitch_id):
-    '''
-    gets the upvotes of a particular pitch
-    '''
-    upvotes_number = Pitches.query.filter_by(id = pitch_id).first()
-    return upvotes_number.up_votes
+    def likes(self):
+        self.likes = self.likes + 1
+        self.vote_count = self.likes - self.dislikes
+        db.session.add(self)
+        db.session.commit()
 
-    @classmethod
-    def get_downvotes(cls,pitch_id):
-    '''
-    gets the downvotes of a particular pitch
-    '''
-    downvotes_number = Pitches.query.filter_by(id = pitch_id).first()
-    return downvotes_number.down_votes
+    def dislikes(self):
+        self.dislikes = self.dislikes + 1
+        self.vote_count = self.likes - self.dislikes
+        db.session.add(self)
+        db.session.commit()
+
 
     def __repr__(self):
-    return f'Pitch {self.title}'
+        return f'Pitch {self.title}'
+
+
+
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -102,11 +102,25 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 
-  
+
+
+    @classmethod
+    def get_comments_by_pitch(cls,id):
+        '''
+        function to retrieve comments based on the pitch_id
+        '''
+        comments_list = Comments.query.filter_by(pitch_id = id).all()
+
+        return comments_list
+
 
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+    
+    def __repr__(self):
+        return f'Comment {self.comment}'
 
     
 

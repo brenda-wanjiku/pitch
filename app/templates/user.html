@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-5 col-lg-5">
             <div class="img-container">
-                <img src="{{url_for('static', filename = user.profile_pic)}}" class="img-thumbnail profile-pic">
+                <img src="{{url_for('static', filename ='user.profile_pic')}}" class="img-thumbnail profile-pic">
             </div>
         </div>
         <div class="col-sm-12 col-md-5 col-lg-5">
@@ -26,13 +26,11 @@
             <div class="col-md-5 pitch-card">
                 <img src="{{url_for('static',filename='pitch.user.profile_pic')}}" alt="">
                 <h3 class="source-name">{{pitch.title}}</h3>
-                <p>Posted by <strong>{{pitch.user.name}}</strong></p>
+                <p>Posted by <strong>{{pitch.name.name}}</strong></p>
                 <p>"{{pitch.content}}"</p>
                 <p>CATEGORY: <strong>{{pitch.category}}</strong></p>
             </div>
             {% endfor %}
-        </div>
-        {% endfor %}
         {% else %}
         <h2>You have no pitches</h2>
         {% endif %}

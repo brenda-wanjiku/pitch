@@ -37,3 +37,22 @@ body{
     font-family: 'Chivo', sans-serif;
     font-size: 20px; 
 }
+.comment a{
+    text-align: center;
+    margin-left: 250px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    font-family: 'Chivo', sans-serif;
+}
+.profile a{
+    text-align: center;
+    margin-left: 200px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    font-family: 'Chivo', sans-serif;
+}
+.pitch{
+    text-align: center;
+}

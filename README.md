@@ -3,7 +3,7 @@
 # Description
 A flask-based application that allows users to post elevator pitches, get and give feedback on the pitches.
 
-# By Brenda Wanjiku
+# By https://github.com/brenda-wanjiku/pitch
 
 # Setup/Installation Requirements
 # Prerequisites
@@ -64,4 +64,4 @@ $ python3.8 manage.py test
 If you need any clarifications or have feedback on this project , contact the author at brendawanjiku@gmail.com
 
 # License
-This software is Licensed under MIT license Copyright (2018) brenda-wanjiku
+This software is Licensed under MIT license Copyright (2018) https://raw.githubusercontent.com/brenda-wanjiku/pitch/master/LICENSE

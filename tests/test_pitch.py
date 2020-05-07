@@ -25,3 +25,7 @@ class PitchModelTest(unittest.TestCase):
         self.new_pitch.save_pitch()
         got_pitch = Pitch.get_pitch(1)
         self.assertTrue(got_pitch is not None)
+
+     def test_relationship_user(self):
+        user = self.new_pitch.user.username
+        self.assertTrue(user == "Brenda")

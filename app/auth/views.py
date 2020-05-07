@@ -19,7 +19,7 @@ def register():
             new_user = User(name = name, email = email, password = pass_code)
             new_user.save_user()
 
-            mail_message("Welcome to watchlist","email/welcome_user",User.email,name=name)
+            mail_message("Welcome to watchlist","email/welcome_user",new_user.email,name=name)
 
             return redirect(url_for('auth.login'))
      
